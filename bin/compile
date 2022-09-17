@@ -15,7 +15,7 @@ create_env() {
 }
 
 write_profile() {
-  echo "=====> Writing CURRENT_COMMIT_SHA=$SOURCE_VERSION to $PROFILE_PATH"
+  echo "=====> Writing CURRENT_COMMIT_SHA=$SOURCE_VERSION"
   echo "export CURRENT_COMMIT_SHA=\"$SOURCE_VERSION\"" >> $PROFILE_PATH
   
   # This command:
@@ -26,7 +26,8 @@ write_profile() {
   #
   # So we use sed 's/~.*//' to pluck off the ~ and everything after it
   CURRENT_BRANCH_NAME=$(git name-rev --name-only $CURRENT_COMMIT_SHA | sed 's/~.*//')
-  echo "CURRENT_BRANCH_NAME = $CURRENT_BRANCH_NAME"
+  echo "=====> Writing CURRENT_BRANCH_NAME=$CURRENT_BRANCH_NAME"
+  echo "export CURRENT_BRANCH_NAME=\"$CURRENT_BRANCH_NAME\"" >> $PROFILE_PATH
 }
 
 create_env
