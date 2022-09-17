@@ -15,10 +15,17 @@ create_env() {
 }
 
 write_profile() {
-  echo "=====> Writing SOURCE_VERSION ($SOURCE_VERSION) to $PROFILE_PATH"
+  echo "=====> Writing CURRENT_COMMIT_SHA=$SOURCE_VERSION to $PROFILE_PATH"
   echo "export CURRENT_COMMIT_SHA=\"$SOURCE_VERSION\"" >> $PROFILE_PATH
   
-  CURRENT_BRANCH_NAME=$(git branch --show-current)
+  # This command:
+  # $ git name-rev --name-only $CURRENT_COMMIT_SHA
+  #
+  # Returns something like:
+  # branch-name~1
+  #
+  # So we use sed 's/~.*//' to pluck off the ~ and everything after it
+  CURRENT_BRANCH_NAME=$(git name-rev --name-only $CURRENT_COMMIT_SHA | sed 's/~.*//')
   echo "CURRENT_BRANCH_NAME = $CURRENT_BRANCH_NAME"
 }
 
