@@ -21,6 +21,7 @@ write_profile() {
   # Fetch the proper branch so we can read it in subsequent commands ...
   #repo=$(git remote get-url origin)
   #git fetch --depth=1 $repo $SOURCE_VERSION
+  cd $BUILD_DIR
   git status
   echo "\n\n"
   git remote -v
