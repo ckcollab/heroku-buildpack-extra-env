@@ -21,7 +21,11 @@ write_profile() {
   # Fetch the proper branch so we can read it in subsequent commands ...
   #repo=$(git remote get-url origin)
   #git fetch --depth=1 $repo $SOURCE_VERSION
-  git pull --unshallow
+  git status
+  echo "\n\n"
+  git remote -v
+  echo "\n\n"
+  git log
 
   # This command:
   # $ git name-rev --name-only $CURRENT_COMMIT_SHA
