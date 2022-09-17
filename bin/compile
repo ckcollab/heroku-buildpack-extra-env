@@ -18,6 +18,9 @@ write_profile() {
   echo "=====> Writing CURRENT_COMMIT_SHA=$SOURCE_VERSION"
   echo "export CURRENT_COMMIT_SHA=\"$SOURCE_VERSION\"" >> $PROFILE_PATH
   
+  # Fetch the proper branch so we can read it in subsequent commands ...
+  git fetch --depth=1 $SOURCE_VERSION
+
   # This command:
   # $ git name-rev --name-only $CURRENT_COMMIT_SHA
   #
@@ -29,6 +32,8 @@ write_profile() {
   echo "=====> Writing CURRENT_BRANCH_NAME=$CURRENT_BRANCH_NAME"
   echo "export CURRENT_BRANCH_NAME=\"$CURRENT_BRANCH_NAME\"" >> $PROFILE_PATH
 }
+
+exit 1
 
 create_env
 write_profile
