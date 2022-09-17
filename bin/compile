@@ -19,8 +19,9 @@ write_profile() {
   echo "export CURRENT_COMMIT_SHA=\"$SOURCE_VERSION\"" >> $PROFILE_PATH
   
   # Fetch the proper branch so we can read it in subsequent commands ...
-  repo=$(git remote get-url origin)
-  git fetch --depth=1 $repo $SOURCE_VERSION
+  #repo=$(git remote get-url origin)
+  #git fetch --depth=1 $repo $SOURCE_VERSION
+  git pull --unshallow
 
   # This command:
   # $ git name-rev --name-only $CURRENT_COMMIT_SHA
