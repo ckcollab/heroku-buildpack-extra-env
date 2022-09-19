@@ -17,34 +17,6 @@ create_env() {
 write_profile() {
   echo "=====> Writing CURRENT_COMMIT_SHA=$SOURCE_VERSION"
   echo "export CURRENT_COMMIT_SHA=\"$SOURCE_VERSION\"" >> $PROFILE_PATH
-  
-  # Fetch the proper branch so we can read it in subsequent commands ...
-  #repo=$(git remote get-url origin)
-  #git fetch --depth=1 $repo $SOURCE_VERSION
-  cd $BUILD_DIR
-  
-  pwd
-  ls
-  echo "\n\n"
-  
-  
-  
-  git status
-  echo "\n\n"
-  git remote -v
-  echo "\n\n"
-  git log
-
-  # This command:
-  # $ git name-rev --name-only $CURRENT_COMMIT_SHA
-  #
-  # Returns something like:
-  # branch-name~1
-  #
-  # So we use sed 's/~.*//' to pluck off the ~ and everything after it
-  CURRENT_BRANCH_NAME=$(git name-rev --name-only $SOURCE_VERSION | sed 's/~.*//')
-  echo "=====> Writing CURRENT_BRANCH_NAME=$CURRENT_BRANCH_NAME"
-  echo "export CURRENT_BRANCH_NAME=\"$CURRENT_BRANCH_NAME\"" >> $PROFILE_PATH
 }
 
 create_env
