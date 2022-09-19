@@ -22,4 +22,4 @@ write_profile() {
 create_env
 write_profile
 
-exit 1
+exit 0
